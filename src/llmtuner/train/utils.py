@@ -9,8 +9,8 @@ from transformers.trainer_pt_utils import get_parameter_names
 from ..extras.logging import get_logger
 from ..extras.packages import is_galore_available
 from ..hparams import FinetuningArguments, ModelArguments
-from ..model import find_all_linear_modules, load_model, load_tokenizer, load_valuehead_params
-
+from ..model import (find_all_linear_modules, load_model, load_tokenizer,
+                     load_valuehead_params)
 
 if is_galore_available():
     from galore_torch import GaLoreAdafactor, GaLoreAdamW, GaLoreAdamW8bit
@@ -321,6 +321,7 @@ def _create_badam_optimizer(
             start_block=finetuning_args.badam_start_block,
             switch_mode=finetuning_args.badam_switch_mode,
             verbose=finetuning_args.badam_verbose,
+            active_modules=['transformer.token_embeddings.'],
         )
         logger.info(
             f"Using BAdam optimizer with layer-wise update, switch mode is {finetuning_args.badam_switch_mode}, "
@@ -338,7 +339,7 @@ def _create_badam_optimizer(
             update_ratio=finetuning_args.badam_update_ratio,
             mask_mode=finetuning_args.badam_mask_mode,
             verbose=finetuning_args.badam_verbose,
-            include_embedding=False,
+            active_modules=['transformer.token_embeddings.'],
             **optim_kwargs,
         )
         logger.info(

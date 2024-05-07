@@ -1,0 +1,37 @@
+# model
+model_name_or_path: saves/OpenELM-1_1B/zh-base
+# method
+stage: pt
+do_train: true
+finetuning_type: full
+use_badam: true
+badam_switch_mode: random
+badam_switch_interval: 50
+badam_verbose: 2
+
+# dataset
+dataset: zhtw-news-and-articles-2B
+template: llama2
+cutoff_len: 1024
+val_size: 0.05
+preprocessing_num_workers: 16
+
+# output
+output_dir: saves/OpenELM-1_1B/zh-cp
+logging_steps: 10
+save_steps: 12000
+plot_loss: true
+overwrite_output_dir: true
+
+# train
+per_device_train_batch_size: 6
+gradient_accumulation_steps: 8
+learning_rate: 0.0001
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_steps: 0.0333
+
+# eval
+per_device_eval_batch_size: 1
+evaluation_strategy: steps
+eval_steps: 4000
