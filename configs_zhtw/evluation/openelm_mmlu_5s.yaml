@@ -1,0 +1,12 @@
+# model
+model_name_or_path: liswei/OpenELM-270M-Llama-2-Chinese-7b-hf-30K-task-vector-sft
+finetuning_type: full
+
+# dataset
+task: mmlu
+split: test
+lang: en
+n_shot: 5
+
+template: llama2
+batch_size: 1
