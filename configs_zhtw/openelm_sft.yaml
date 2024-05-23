@@ -1,16 +1,16 @@
 # model
-model_name_or_path: saves/OpenELM-270M/zh-cp-ablation-galore
+model_name_or_path: saves/OpenELM-270M/zh-cp-galore
 # method
 stage: sft
 do_train: true
 finetuning_type: full
-use_galore: true
-galore_layerwise: false
-galore_target: all
-galore_rank: 1024
-galore_scale: 4.0
-galore_update_interval: 200
-pure_bf16: false
+# use_galore: true
+# galore_layerwise: false
+# galore_target: all
+# galore_rank: 1024
+# galore_scale: 4.0
+# galore_update_interval: 200
+# pure_bf16: false
 
 # dataset
 dataset: en2tw-alignment-sft,TaiwanChat
@@ -20,7 +20,7 @@ val_size: 0.1
 preprocessing_num_workers: 16
 
 # output
-output_dir: saves/OpenELM-270M/zh-sft-galore
+output_dir: saves/OpenELM-270M/zh-sft
 logging_steps: 10
 save_steps: 4000
 plot_loss: true
@@ -28,7 +28,7 @@ overwrite_output_dir: true
 report_to: all
 
 # train
-per_device_train_batch_size: 4
+per_device_train_batch_size: 2
 gradient_accumulation_steps: 16
 learning_rate: 0.0001
 num_train_epochs: 3.0
