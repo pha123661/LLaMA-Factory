@@ -13,7 +13,7 @@ preprocessing_num_workers: 16
 # output
 output_dir: saves/OpenELM-1_1B/OpenELM-1_1B-zh-cp
 logging_steps: 10
-save_steps: 100
+save_steps: 4000
 plot_loss: true
 overwrite_output_dir: true
 report_to: all
