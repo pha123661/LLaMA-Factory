@@ -1,0 +1,35 @@
+# model
+model_name_or_path: liswei/OpenELM-1_1B-zh-cp
+# method
+stage: sft
+do_train: true
+finetuning_type: full
+fp16: false
+
+# dataset
+dataset: en2tw-alignment-sft,TaiwanChat
+template: llama2
+cutoff_len: 1024
+val_size: 0.1
+preprocessing_num_workers: 30
+
+# output
+output_dir: saves/OpenELM-1_1B/OpenELM-1_1B-zh-sft
+logging_steps: 10
+save_steps: 4000
+plot_loss: true
+overwrite_output_dir: true
+report_to: all
+push_to_hub: true
+
+# train
+per_device_train_batch_size: 12
+gradient_accumulation_steps: 4
+learning_rate: 0.0001
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+
+per_device_eval_batch_size: 12
+evaluation_strategy: steps
+eval_steps: 500
