@@ -9,6 +9,10 @@ args = parser.parse_args()
 
 api = HfApi()
 
+if not api.repo_exists(repo_id=args.repo_id):
+    print(f"Creating repo {args.repo_id}")
+    api.create_repo(repo_id=args.repo_id, private=True)
+
 print(f"Uploading model from {args.model_path} to {args.repo_id}")
 api.upload_folder(
     folder_path=args.model_path,
